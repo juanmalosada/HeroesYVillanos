@@ -26,7 +26,12 @@ public class ComparatorCompuesto implements Comparator {
     }
     @Override
     public int compare(Enfrentable enfrentable1, Enfrentable enfrentable2) {
-        // TODO implementar
+        for (Comparator comparator : comparators) {
+            int res = comparator.compare(enfrentable1, enfrentable2);
+            if(res != 0) {
+                return res;
+            }
+        }
         return 0;
     }
     
