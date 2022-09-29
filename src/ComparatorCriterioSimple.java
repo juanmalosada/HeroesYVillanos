@@ -4,8 +4,9 @@ public class ComparatorCriterioSimple implements Comparator {
     
     @Override
     public int compare(Enfrentable enfrentable1, Enfrentable enfrentable2) {
-        // TODO implementar
-        return 0;
+        Float valor1 = enfrentable1.getValorAtributo(atributo);
+        Float valor2 = enfrentable2.getValorAtributo(atributo);
+        return valor1.compareTo(valor2);
     }
 
     public String getAtributo() {

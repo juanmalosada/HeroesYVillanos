@@ -26,7 +26,7 @@ public class ComparatorCompuesto implements Comparator {
     }
     @Override
     public int compare(Enfrentable enfrentable1, Enfrentable enfrentable2) {
-        // TODO Auto-generated method stub
+        // TODO implementar
         return 0;
     }
     

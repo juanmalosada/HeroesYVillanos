@@ -19,8 +19,12 @@ public class AtributoOperacion implements Atributo {
 
     @Override
     public float getValor(Enfrentable enfrentable) {
-        // TODO implementar
-        return 0;
+        float valor1 = enfrentable.getValorAtributo(this.key1);
+        float valor2 = enfrentable.getValorAtributo(this.key2);
+        if(valor1 == 0 || valor2 == 0) {
+            return 0f;
+        }
+        return valor1 / valor2;
     }
 
 }
