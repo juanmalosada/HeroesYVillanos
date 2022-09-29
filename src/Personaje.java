@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class Personaje extends Enfrentable {
     
@@ -33,23 +34,20 @@ public class Personaje extends Enfrentable {
 
     @Override
     public float getValorAtributo(String atributo) {
-        // TODO implementar
-        return 0;
+        return this.atributos.get(atributo).getValor(this);
     }
 
     @Override
-    public Enfrentable enfrentar(Enfrentable enfrentable, Comparator comparador) {
-        // TODO implementar
-        return null;
+    public Optional<Enfrentable> enfrentar(Enfrentable enfrentable, Comparator comparador) {
+        if (comparador.compare(this, enfrentable) > 0) {
+            return Optional.of(this);
+        } else if (comparador.compare(this, enfrentable) < 0) {
+            return Optional.of(enfrentable);
+        } else {
+            return Optional.empty();
+        }
     }
 
-    @Override
-    public List<Personaje> ordenar(Comparator comparador) {
-        // TODO implementar
-        return null;
-    }
-
-    //TODO Debería estar implementado?
     @Override
     protected List<Personaje> getPersonajes() {
         List<Personaje> personajes = new ArrayList<Personaje>();

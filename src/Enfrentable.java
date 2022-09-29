@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Optional;
 
 public abstract class Enfrentable {
     
@@ -30,10 +31,11 @@ public abstract class Enfrentable {
     //devuelve el valor del atributo pasado por parametro
     public abstract float getValorAtributo(String atributo);
 
-    //Hace la batalla y devuelve al ganador
-    public abstract Enfrentable enfrentar(Enfrentable enfrentable, Comparator comparador);
-
-    public abstract List<Personaje> ordenar (Comparator comparador);
+    /*
+    * Cambie el tipo de retorno a optional porque en caso de empate en todas las carecteristicas
+    * no se podria devolver un enfrentable, por lo tanto devolveria un optional vacio.
+    */
+    public abstract Optional<Enfrentable> enfrentar(Enfrentable enfrentable, Comparator comparador);
 
     protected abstract List<Personaje> getPersonajes();
     

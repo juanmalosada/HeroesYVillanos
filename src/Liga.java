@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Liga extends Enfrentable {
 
@@ -27,26 +29,42 @@ public class Liga extends Enfrentable {
 
     @Override
     public float getValorAtributo(String atributo) {
-        // TODO implementar
-        return 0;
+        List <Personaje> personajes = this.getPersonajes();
+        float valor = 0;
+        for (Personaje personaje : personajes) {
+            valor += personaje.getValorAtributo(atributo);
+        }
+        return valor / personajes.size();
     }
 
     @Override
-    public Enfrentable enfrentar(Enfrentable enfrentable, Comparator comparador) {
-        // TODO implementar
-        return null;
+    public Optional<Enfrentable> enfrentar(Enfrentable enfrentable, Comparator comparador) {
+        if (comparador.compare(this, enfrentable) > 0) {
+            return Optional.of(this);
+        } else if (comparador.compare(this, enfrentable) < 0) {
+            return Optional.of(enfrentable);
+        } else {
+            return Optional.empty();
+        }
     }
 
-    @Override
     public List<Personaje> ordenar(Comparator comparador) {
-        // TODO implementar
-        return null;
+        List<Personaje> personajes = new ArrayList<Personaje>();
+        for (Enfrentable enfrentable : integrantes) {
+            personajes.addAll(enfrentable.getPersonajes());
+        }
+        personajes.sort(comparador);
+        return personajes;
     }
 
     @Override
     protected List<Personaje> getPersonajes() {
-        // TODO implementar
-        return null;
+        List<Personaje> personajes = new ArrayList<Personaje>();
+        for (Enfrentable enfrentable : this.integrantes) {
+            personajes.addAll(enfrentable.getPersonajes());
+        }
+
+        return personajes;
     }
     
 }
