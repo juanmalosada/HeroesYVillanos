@@ -55,4 +55,9 @@ public class Personaje extends Enfrentable {
         return personajes;
     }
 
+    @Override
+    public String toString() {
+        return "Personaje: " + this.getNombre();
+    }
+
 }

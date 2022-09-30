@@ -60,16 +60,10 @@ public class Juego {
     }
 
     //Devuelve la lista de personajes ordenada por ese comparador
-    public List<Personaje> ordenarPersonajes(Comparator comparador) {
-        List <Personaje> personajes = new ArrayList<>();
-
-        for (Enfrentable enfrentable : this.enfrentables) {
-            personajes.addAll(enfrentable.getPersonajes());
-        }
-
-        personajes.sort(comparador);
-
-        return personajes;
+    public List<Personaje> ordenarPersonajes(java.util.Comparator<Enfrentable> comparador) {
+        return enfrentables.stream().map(Enfrentable::getPersonajes).flatMap(List::stream)
+        .sorted(comparador).
+        collect(java.util.stream.Collectors.toList());
     }
 
 }

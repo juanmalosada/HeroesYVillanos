@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Liga extends Enfrentable {
 
@@ -48,13 +49,8 @@ public class Liga extends Enfrentable {
         }
     }
 
-    public List<Personaje> ordenar(Comparator comparador) {
-        List<Personaje> personajes = new ArrayList<Personaje>();
-        for (Enfrentable enfrentable : integrantes) {
-            personajes.addAll(enfrentable.getPersonajes());
-        }
-        personajes.sort(comparador);
-        return personajes;
+    public List<Personaje> ordenar(Comparator comparador) {    
+        return integrantes.stream().flatMap(enfrentable -> enfrentable.getPersonajes().stream()).sorted(comparador).collect(Collectors.toList());
     }
 
     @Override
